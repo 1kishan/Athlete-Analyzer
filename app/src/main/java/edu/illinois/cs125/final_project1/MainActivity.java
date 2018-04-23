@@ -12,6 +12,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     ImageButton nfl = (ImageButton) findViewById(R.id.NFL_button);
+    ImageButton nba = (ImageButton) findViewById(R.id.NBA_button);
+    ImageButton mlb = (ImageButton) findViewById(R.id.MLB_button);
+
 
 
 }
