@@ -11,20 +11,21 @@
         android:id="@+id/MLB_button"
         android:layout_width="wrap_content"
         android:layout_height="175dp"
-        android:background="@drawable/mLB_new"
-        android:contentDescription="MLB" />
+        android:background="@drawable/mlb_new"
+        android:contentDescription="@string/mlb" />
 
     <ImageButton
         android:id="@+id/NBA_button"
         android:layout_width="wrap_content"
         android:layout_height="175dp"
-        android:background="@drawable/nBA_app"
-        android:contentDescription="NBA" />
+        android:background="@drawable/nba_app"
+        android:contentDescription="@string/nba" />
 
     <ImageButton
         android:id="@+id/NFL_button"
         android:layout_width="wrap_content"
         android:layout_height="175dp"
-        android:background="@drawable/nFL_new"
-        android:contentDescription="NFL" />
+        android:background="@drawable/nfl_new"
+        android:contentDescription="@string/nfl" />
+
 </LinearLayout>

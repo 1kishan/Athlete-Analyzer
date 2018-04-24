@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NBA">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:text="Compare NBA Players" />
+
+    <Button
+        android:id="@+id/nba_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Return to Home" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="94dp"
+        android:layout_height="23dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="-16dp"
+        android:layout_marginTop="92dp"
+        android:layout_toStartOf="@+id/textView"
+        android:text="Player 1 Info" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="94dp"
+        android:layout_height="23dp"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_toEndOf="@+id/nba_back_button"
+        android:text="Player 2 Info" />
+</RelativeLayout>
