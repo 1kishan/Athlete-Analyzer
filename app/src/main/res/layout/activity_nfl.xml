@@ -6,12 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".NFL">
 
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/nfl_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/nfl_second"
+        android:layout_marginEnd="22dp"
+        android:hint="pick second player" />
+
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/nfl_second"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="53dp"
+        android:hint="pick first player" />
+
+    <Button
+        android:id="@+id/compare_nfl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="182dp"
+        android:text="Compare!" />
+
     <TextView
         android:id="@+id/textView9"
         android:layout_width="94dp"
         android:layout_height="23dp"
         android:layout_alignTop="@+id/textView8"
-        android:layout_toEndOf="@+id/textView2"
+        android:layout_toEndOf="@+id/compare_nfl"
         android:text="Player 2 Info" />
 
     <TextView
@@ -20,8 +48,8 @@
         android:layout_height="23dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="107dp"
         android:text="Player 1 Info" />
 
     <TextView
@@ -40,4 +68,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="Return to Home" />
+
 </RelativeLayout>
