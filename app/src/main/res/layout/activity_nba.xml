@@ -6,6 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".NBA">
 
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/nba_second"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView3"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="-92dp"
+        android:hint="pick second player" />
+
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/nba_first"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView3"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="-92dp"
+        android:layout_marginStart="29dp"
+        android:hint="pick first player" />
+
+    <Button
+        android:id="@+id/compare_nba"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Compare!" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
