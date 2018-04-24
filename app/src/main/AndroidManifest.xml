@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MLB" />
+        <activity android:name=".NFL" />
+        <activity android:name=".NBA"></activity>
     </application>
 
 </manifest>

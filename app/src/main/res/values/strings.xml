@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Final_project1</string>
+    <string name="mlb" />
+    <string name="nba" />
+    <string name="nfl" />
 </resources>
