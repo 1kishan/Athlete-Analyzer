@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".MLB">
 
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/mlb_second"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView7"
+        android:layout_alignParentEnd="true"
+        android:hint="pick second player" />
+
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/mlb_first"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView7"
+        android:layout_toStartOf="@+id/compare_mlb"
+        android:hint="pick first player" />
+
     <TextView
         android:id="@+id/textView7"
         android:layout_width="94dp"
@@ -39,4 +55,13 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="Return to Home" />
+
+    <Button
+        android:id="@+id/compare_mlb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="163dp"
+        android:text="Compare!" />
 </RelativeLayout>
