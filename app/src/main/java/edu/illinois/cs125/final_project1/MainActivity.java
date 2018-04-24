@@ -62,46 +62,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-
-//        homefrommlb.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//
-//                switch (v.getId()) {
-//
-//                    case R.id.home_from_mlb:
-//                        setContentView(R.layout.activity_main);
-//                        break;
-//                }
-//            }
-//        });
-////
-//        home1.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//
-//                switch (v.getId()) {
-//
-//                    case R.id.back_to_home:
-//                        setContentView(R.layout.activity_main);
-//                        break;
-//                }
-//            }
-//        });
-//
-//        home2.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//
-//                switch (v.getId()) {
-//
-//                    case R.id.back_to_home3:
-//                        setContentView(R.layout.activity_main);
-//                        break;
-//                }
-//            }
-//        });
-
-
-
     }
 
 
