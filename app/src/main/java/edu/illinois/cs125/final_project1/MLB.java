@@ -15,22 +15,11 @@ public class MLB extends AppCompatActivity {
         setContentView(R.layout.activity_mlb);
 
         Button mlbBack = (Button) findViewById(R.id.mlb_back_button);
-        api = findViewById(R.id.Json);
-        final Button api = findViewById(R.id.APICall);
-        api.setOnClickListener(new View.OnClickListener() {
-            public void onClick(final View v) {
-                temp.apiGetData();
-            }
-
-        }
-
-
-
         mlbBack.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    finish();
-                }
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
         });
 
     }
