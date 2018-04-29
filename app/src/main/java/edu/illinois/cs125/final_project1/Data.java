@@ -29,7 +29,7 @@ public class Data {
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
-                connection.setDoOutput(true);
+                //connection.setDoOutput(true);
                 connection.setRequestProperty("Authorization", "Basic " + encoding);
                 InputStream content = (InputStream)connection.getInputStream();
                 BufferedReader in =
@@ -39,18 +39,17 @@ public class Data {
             while ((line = in.readLine()) != null) {
                     a += line;
                 }
-            System.out.println("a");
+            System.out.println(a);
                 return a;
             } catch(Exception e) {
                 e.printStackTrace();
             }
+            return null;
         }
         public String urlBuilder(String player) {
-        String x = "https://api.mysportsfeeds.com/v1.2/pull/nba/2018-regular/cumulative_player_stats." +
-                    "json?"+player;
-        return x;
+            String x = "https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?player=Lebron-James";
+            return x;
         }
-
 
 }
 

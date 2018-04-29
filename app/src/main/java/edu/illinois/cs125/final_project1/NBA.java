@@ -19,8 +19,15 @@ public class NBA extends AppCompatActivity {
         nbaBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 finish();
+            }
+        });
+        Button compare = findViewById(R.id.compare_nba);
+        compare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Data player1 = new Data("Lebron-James","NBA");
+                player1.apiGetData();
             }
         });
 
