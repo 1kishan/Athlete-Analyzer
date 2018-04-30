@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NFLcompare">
+
+    <Button
+        android:id="@+id/nfl_compare_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="447dp" />
+
+    <TextView
+        android:id="@+id/nflcomparetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NFL Compare Screen"
+        tools:layout_editor_absoluteX="124dp"
+        tools:layout_editor_absoluteY="27dp" />
+</android.support.constraint.ConstraintLayout>

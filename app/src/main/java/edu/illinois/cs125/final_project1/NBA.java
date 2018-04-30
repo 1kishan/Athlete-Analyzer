@@ -1,14 +1,10 @@
 package edu.illinois.cs125.final_project1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 public class NBA extends AppCompatActivity {
 
@@ -36,23 +32,23 @@ public class NBA extends AppCompatActivity {
             }
         });
 
+        Button nbaCompare = (Button) findViewById(R.id.compare_nba);
 
-    }
-
-    public int PPG(String json) {
-        JsonParser parser = new JsonParser();
-        JsonObject rootObj = parser.parse(json).getAsJsonObject();
-        JsonArray playerStatsArray = rootObj.getAsJsonArray("playerstatsentry");
-        for (JsonElement element : playerStatsArray) {
-            JsonObject elementObject = element.getAsJsonObject();
-            String elementString = elementObject.getAsString();
-            if (elementString.equals("stats")) {
-                JsonElement homeRunsElement = elementObject.get("PtsPerGame");
-                JsonObject homeRunsObject = homeRunsElement.getAsJsonObject();
-                return homeRunsObject.get("#text").getAsInt();
-
+        nbaCompare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchNBACompare();
             }
-        }
-        return 0;
+        });
+
+
+
     }
+
+    public void launchNBACompare() {
+
+        Intent intent = new Intent(this, NBAcompare.class);
+        startActivity(intent);
+    }
+
 }
