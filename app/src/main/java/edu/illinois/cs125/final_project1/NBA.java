@@ -39,37 +39,20 @@ public class NBA extends AppCompatActivity {
 
     }
 
-    public static String playerPPG(String player1, String player2, String json) {
-        int player1PPG = 0;
-        int player2PPG = 0;
+    public int PPG(String json) {
         JsonParser parser = new JsonParser();
         JsonObject rootObj = parser.parse(json).getAsJsonObject();
         JsonArray playerStatsArray = rootObj.getAsJsonArray("playerstatsentry");
         for (JsonElement element : playerStatsArray) {
             JsonObject elementObject = element.getAsJsonObject();
-            JsonObject playerObject = elementObject.getAsJsonObject("player");
-            JsonElement firstNameElement = playerObject.get("FirstName");
-            String firstName = firstNameElement.getAsString();
-            JsonElement lastNameElement = playerObject.get("LastName");
-            String lastName = lastNameElement.getAsString();
-            JsonObject statsObject = elementObject.getAsJsonObject("stats");
-            JsonElement PPGElement = statsObject.get("PtsPerGame");
-            JsonObject PPGObject = PPGElement.getAsJsonObject();
-            int PPG = PPGObject.get("#text").getAsInt();
-            if (player1.equals(firstName + " " + lastName)) {
-                player1PPG = PPG;
-            }
-            if (player2.equals(firstName + " " + lastName)) {
-                player2PPG = PPG;
+            String elementString = elementObject.getAsString();
+            if (elementString.equals("stats")) {
+                JsonElement homeRunsElement = elementObject.get("PtsPerGame");
+                JsonObject homeRunsObject = homeRunsElement.getAsJsonObject();
+                return homeRunsObject.get("#text").getAsInt();
+
             }
         }
-        if (player1PPG > player2PPG) {
-            return player1;
-        }
-        if (player2PPG > player1PPG) {
-            return player2;
-        } else {
-            return player1 + " and " + player2 + " are tied.";
-        }
+        return 0;
     }
 }

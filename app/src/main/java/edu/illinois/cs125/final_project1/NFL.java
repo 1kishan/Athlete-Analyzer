@@ -30,37 +30,20 @@ public class NFL extends AppCompatActivity {
 
     }
 
-    public static String playerTD(String player1, String player2, String json) {
-        int player1TD = 0;
-        int player2TD = 0;
+    public int PassTD(String json) {
         JsonParser parser = new JsonParser();
         JsonObject rootObj = parser.parse(json).getAsJsonObject();
         JsonArray playerStatsArray = rootObj.getAsJsonArray("playerstatsentry");
         for (JsonElement element : playerStatsArray) {
             JsonObject elementObject = element.getAsJsonObject();
-            JsonObject playerObject = elementObject.getAsJsonObject("player");
-            JsonElement firstNameElement = playerObject.get("FirstName");
-            String firstName = firstNameElement.getAsString();
-            JsonElement lastNameElement = playerObject.get("LastName");
-            String lastName = lastNameElement.getAsString();
-            JsonObject statsObject = elementObject.getAsJsonObject("stats");
-            JsonElement TDElement = statsObject.get("PassTD");
-            JsonObject TDObject = TDElement.getAsJsonObject();
-            int TD = TDObject.get("#text").getAsInt();
-            if (player1.equals(firstName + " " + lastName)) {
-                player1TD = TD;
-            }
-            if (player2.equals(firstName + " " + lastName)) {
-                player2TD = TD;
+            String elementString = elementObject.getAsString();
+            if (elementString.equals("stats")) {
+                JsonElement homeRunsElement = elementObject.get("PassTD");
+                JsonObject homeRunsObject = homeRunsElement.getAsJsonObject();
+                return homeRunsObject.get("#text").getAsInt();
+
             }
         }
-        if (player1TD > player2TD) {
-            return player1;
-        }
-        if (player2TD > player1TD) {
-            return player2;
-        } else {
-            return player1 + " and " + player2 + " are tied.";
-        }
+        return 0;
     }
 }
