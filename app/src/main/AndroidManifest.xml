@@ -24,7 +24,7 @@
         <activity android:name=".NBA" />
         <activity android:name=".MLBcompare" />
         <activity android:name=".NBAcompare" />
-        <activity android:name=".NFLcompare"></activity>
+        <activity android:name=".NFLcompare"/>
     </application>
 
 </manifest>
