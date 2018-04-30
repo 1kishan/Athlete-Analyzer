@@ -1,28 +1,24 @@
 package edu.illinois.cs125.final_project1;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class NFL extends AppCompatActivity {
+public class NFLcompare extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nfl);
+        setContentView(R.layout.activity_nflcompare);
 
-        Button nflBack = (Button) findViewById(R.id.nfl_back_button);
+        Button nflcompareback = (Button) findViewById(R.id.nfl_compare_back);
 
-
-        nflBack.setOnClickListener(new View.OnClickListener() {
+        nflcompareback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 finish();
             }
         });
-
     }
-
 }

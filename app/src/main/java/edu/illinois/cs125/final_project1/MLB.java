@@ -1,15 +1,11 @@
 package edu.illinois.cs125.final_project1;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 public class MLB extends AppCompatActivity {
     public TextView api;
@@ -27,23 +23,22 @@ public class MLB extends AppCompatActivity {
             }
         });
 
+        Button mlbCompare = (Button) findViewById(R.id.compare_mlb);
+
+        mlbCompare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchMLBCompare();
+            }
+        });
+
+
     }
 
-    public int homeRuns(String json) {
-        JsonParser parser = new JsonParser();
-        JsonObject rootObj = parser.parse(json).getAsJsonObject();
-        JsonArray playerStatsArray = rootObj.getAsJsonArray("playerstatsentry");
-        for (JsonElement element : playerStatsArray) {
-            JsonObject elementObject = element.getAsJsonObject();
-            String elementString = elementObject.getAsString();
-            if (elementString.equals("stats")) {
-                JsonElement homeRunsElement = elementObject.get("Homeruns");
-                JsonObject homeRunsObject = homeRunsElement.getAsJsonObject();
-                return homeRunsObject.get("#text").getAsInt();
+    public void launchMLBCompare() {
 
-            }
-        }
-        return 0;
+        Intent intent = new Intent(this, MLBcompare.class);
+        startActivity(intent);
     }
 
 }

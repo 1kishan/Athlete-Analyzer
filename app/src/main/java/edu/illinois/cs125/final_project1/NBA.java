@@ -1,14 +1,9 @@
 package edu.illinois.cs125.final_project1;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 public class NBA extends AppCompatActivity {
 
@@ -39,20 +34,55 @@ public class NBA extends AppCompatActivity {
 
     }
 
-    public int PPG(String json) {
-        JsonParser parser = new JsonParser();
-        JsonObject rootObj = parser.parse(json).getAsJsonObject();
-        JsonArray playerStatsArray = rootObj.getAsJsonArray("playerstatsentry");
-        for (JsonElement element : playerStatsArray) {
-            JsonObject elementObject = element.getAsJsonObject();
-            String elementString = elementObject.getAsString();
-            if (elementString.equals("stats")) {
-                JsonElement homeRunsElement = elementObject.get("PtsPerGame");
-                JsonObject homeRunsObject = homeRunsElement.getAsJsonObject();
-                return homeRunsObject.get("#text").getAsInt();
-
-            }
+    /**
+     * This method extracts the points per game for  a player
+     * @param json json string from the sportsfeed api
+     * @return return the points per game
+     */
+    public int getPPG(String json) {
+        if (json == null) {
+            return 0;
         }
         return 0;
     }
+
+    /**
+     * This method extracts the assists per game for  a player
+     * @param json json string from the sportsfeed api
+     * @return return the assists per game
+     */
+    public int getAPG(String json) {
+        return 0;
+    }
+
+    /**
+     * This method extracts the rebounds per game for  a player
+     * @param json json string from the sportsfeed api
+     * @return return the rebounds per game
+     */
+    public int getRPG(String json) {
+        return 0;
+    }
+
+    /**
+     * This method extracts the three point percentage per game for  a player
+     * @param json json string from the sportsfeed api
+     * @return return the 3 point fg % per game
+     */
+    public int getFg3PtPct(String json) {
+        return 0;
+    }
+
+    /**
+     * This method extracts the turnovers per game for  a player
+     * @param json json String from the sportsfeed api
+     * @return returns the turnovers per game for a player
+     */
+    public int getTovPerGame(String json) {
+        return 0;
+    }
+
+
+
+
 }
