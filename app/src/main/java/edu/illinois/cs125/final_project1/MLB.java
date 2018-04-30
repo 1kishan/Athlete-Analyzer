@@ -1,9 +1,11 @@
 package edu.illinois.cs125.final_project1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.gson.JsonArray;
@@ -27,6 +29,23 @@ public class MLB extends AppCompatActivity {
             }
         });
 
+        Button mlbCompare = (Button) findViewById(R.id.compare_mlb);
+
+        mlbCompare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchMLBCompare();
+            }
+        });
+
+
+
+    }
+
+    public void launchMLBCompare() {
+
+        Intent intent = new Intent(this, MLBcompare.class);
+        startActivity(intent);
     }
 
     public static String homeRuns(String player1, String player2, String json) {
