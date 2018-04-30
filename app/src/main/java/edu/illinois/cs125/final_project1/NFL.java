@@ -1,5 +1,6 @@
 package edu.illinois.cs125.final_project1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,5 +24,25 @@ public class NFL extends AppCompatActivity {
             }
         });
 
+
+        Button nflCompare = (Button) findViewById(R.id.compare_nfl);
+
+
+        nflCompare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchNFLCompare();
+            }
+        });
+
+
+
     }
+
+    public void launchNFLCompare() {
+
+        Intent intent = new Intent(this, NFLcompare.class);
+        startActivity(intent);
+    }
+
 }

@@ -1,5 +1,6 @@
 package edu.illinois.cs125.final_project1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +32,23 @@ public class NBA extends AppCompatActivity {
             }
         });
 
+        Button nbaCompare = (Button) findViewById(R.id.compare_nba);
+
+        nbaCompare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchNBACompare();
+            }
+        });
+
+
 
     }
+
+    public void launchNBACompare() {
+
+        Intent intent = new Intent(this, NBAcompare.class);
+        startActivity(intent);
+    }
+
 }
