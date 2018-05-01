@@ -84,7 +84,7 @@ public class NFLcompare extends AppCompatActivity {
 
 
 
-        nflbetterPlayer.setText(getMethods.betterPlayer());
+        nflbetterPlayer.setText("The better player is: " + getMethods.betterPlayer(input1,input2));
         nflbetterPlayer.setTextColor(Color.GREEN);
 
 
