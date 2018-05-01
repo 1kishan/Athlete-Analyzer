@@ -2,6 +2,7 @@ package edu.illinois.cs125.final_project1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -22,16 +23,22 @@ public class MLB extends AppCompatActivity {
                 finish();
             }
         });
-
         Button mlbCompare = (Button) findViewById(R.id.compare_mlb);
-
+        final TextInputEditText firstPlayer = findViewById(R.id.mlb_first);
+        final TextInputEditText secondPlayer = findViewById(R.id.mlb_second);
         mlbCompare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                launchMLBCompare();
-            }
+                String input1 = firstPlayer.getText().toString();
+                input1 = input1.replace(' ','-');
+                String input2 = secondPlayer.getText().toString();
+                input2 = input2.replace(' ','-');
+                Data player1 = new Data(input1,"MLB");
+                Data player2 = new Data(input2, "MLB");
+                System.out.println(player1.urlBuilder());
+                System.out.println(player2.urlBuilder());
+                launchMLBCompare(); }
         });
-
 
     }
 

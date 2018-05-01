@@ -10,12 +10,12 @@ public class Data {
     String player = null;
     String league = null;
 
-    public Data(String player, String league) {
-        player = player;
-        league = league;
+    public Data(String inputPlayer, String inputLeague) {
+        player = inputPlayer;
+        league = inputLeague;
     }
     public String urlBuilder() {
-        String url = null;
+        String url;
         if (league.equals("NBA")) {
             url = "https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?player="+player;
             return url;
