@@ -24,7 +24,7 @@ public class NBA extends AppCompatActivity {
                 finish();
             }
         });
-        Button nbaCompare = findViewById(R.id.compare_nfl);
+        Button nbaCompare = findViewById(R.id.compare_nba);
         final TextInputEditText firstPlayer = findViewById(R.id.nba_first);
         final TextInputEditText secondPlayer = findViewById(R.id.nba_second);
         nbaCompare.setOnClickListener(new View.OnClickListener() {
