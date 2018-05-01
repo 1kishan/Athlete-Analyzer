@@ -12,6 +12,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class NFL extends AppCompatActivity {
+    String input1;
+    String input2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +27,9 @@ public class NFL extends AppCompatActivity {
         nflCompare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String input1 = firstPlayer.getText().toString();
+                input1 = firstPlayer.getText().toString();
                 input1 = input1.replace(' ','-');
-                String input2 = secondPlayer.getText().toString();
+                input2 = secondPlayer.getText().toString();
                 input2 = input2.replace(' ','-');
                 Data player1 = new Data(input1,"NFL");
                 Data player2 = new Data(input2, "NFL");
@@ -46,6 +48,8 @@ public class NFL extends AppCompatActivity {
     }
     public void launchNFLcompare() {
         Intent intent = new Intent(this, NFLcompare.class);
+        intent.putExtra("p1", input1);
+        intent.putExtra("p2",input2);
         startActivity(intent);
     }
 
@@ -135,6 +139,42 @@ public class NFL extends AppCompatActivity {
         double qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("QBRating").
                 getAsJsonObject().get("#text").getAsDouble();
         return qbRating;
+    }
+    public String betterPlayer() {
+        int playerA = 0;
+        int playerB = 0;
+        Data p1 = new Data(input1, "NFL");
+        Data p2 = new Data(input2, "NFL");
+        if (getPassingTD(p1.apiGetData()) > getPassingTD(p2.apiGetData())) {
+            playerA++;
+        } else {
+            playerB++;
+        }
+        if (getPassingYards(p1.apiGetData()) > getPassingYards(p2.apiGetData())) {
+            playerA++;
+        } else {
+            playerB++;
+        }
+        if (getQBRating(p1.apiGetData()) > getQBRating(p2.apiGetData())) {
+            playerA++;
+        } else {
+            playerB++;
+        }
+        if (getInterceptions(p1.apiGetData()) < getInterceptions(p2.apiGetData())) {
+            playerA++;
+        } else {
+            playerB++;
+        }
+        if (getPassPercentage(p1.apiGetData()) > getPassPercentage(p2.apiGetData())) {
+            playerA++;
+        } else {
+            playerB++;
+        }
+        if (playerA > playerB) {
+            return input1;
+        } else {
+            return input2;
+        }
     }
 
 
