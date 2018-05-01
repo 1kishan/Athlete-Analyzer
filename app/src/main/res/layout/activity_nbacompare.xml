@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NBAcompare">
 
+    <TextView
+        android:id="@+id/nbaPlayer1ppg"
+        android:layout_width="133dp"
+        android:layout_height="58dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="44dp"
+        android:layout_marginStart="35dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
     <Button
         android:id="@+id/nba_compare_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="447dp" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="34dp"
+        android:layout_marginTop="36dp"
+        android:text="Back" />
 
-    <TextView
-        android:id="@+id/nbacomparetext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stats Comparison"
-        tools:layout_editor_absoluteX="124dp"
-        tools:layout_editor_absoluteY="27dp" />
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
