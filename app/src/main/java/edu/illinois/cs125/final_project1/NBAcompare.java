@@ -87,6 +87,10 @@ public class NBAcompare extends AppCompatActivity {
         nbaPlayer2tpg = findViewById(R.id.nbaPlayer2ftpg);
         nbaPlayer2tpg.setText(Double.toString(getMethods.getTovPerGame(player2.apiGetData())));
 
+//        //set the better player
+        betterplayertext = findViewById(R.id.the_better_player);
+        betterplayertext.setText("The better player is " + getMethods.betterPlayer(input1,input2));
+
     }
 
 

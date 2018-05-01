@@ -24,6 +24,7 @@ public class NFL extends AppCompatActivity {
         Button nflCompare = findViewById(R.id.compare_nfl);
         final TextInputEditText firstPlayer = findViewById(R.id.nfl_first);
         final TextInputEditText secondPlayer = findViewById(R.id.nfl_second);
+
         nflCompare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,8 +32,6 @@ public class NFL extends AppCompatActivity {
                 input1 = input1.replace(' ','-');
                 input2 = secondPlayer.getText().toString();
                 input2 = input2.replace(' ','-');
-                Data player1 = new Data(input1,"NFL");
-                Data player2 = new Data(input2, "NFL");
                 launchNFLcompare();
             }
         });
