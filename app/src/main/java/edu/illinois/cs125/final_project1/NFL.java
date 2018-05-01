@@ -25,4 +25,46 @@ public class NFL extends AppCompatActivity {
 
     }
 
+    /**
+     * extracts passing touchdowns from the json
+     * @param json json string that is retrieved from the webapi call
+     * @return returns the total touchdowns for the 2017 season
+     */
+    public int getPassingTD(String json) {
+        return 0;
+    }
+    /**
+     * extracts interceptions from the json
+     * @param json json string that is retrieved from the webapi call
+     * @return returns the total interceptions for the 2017 season
+     */
+    public int getInterceptions(String json) {
+        return 0;
+    }
+    /**
+     * extracts passing yards from the json
+     * @param json json string that is retrieved from the webapi call
+     * @return returns the total passing yards for the 2017 season
+     */
+    public int getPassingYards(String json) {
+        return 0;
+    }
+    /**
+     * extracts completion percetange from the json
+     * @param json json string that is retrieved from the webapi call
+     * @return returns the completion percentage for the 2017 season
+     */
+    public int getPassPercentage(String json) {
+        return 0;
+    }
+    /**
+     * extracts passer rating from the json
+     * @param json json string that is retrieved from the webapi call
+     * @return returns the average QB rating for the player for the 2017 season
+     */
+    public int getQBRating(String json) {
+        return 0;
+    }
+
+
 }

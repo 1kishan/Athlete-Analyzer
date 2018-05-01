@@ -41,5 +41,50 @@ public class MLB extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Extracts the Homeruns for a player
+     * @param json json string that is retrieved by the API call
+     * @return returns the number of homeruns for a player
+     */
+    public int getHR(String json) {
+        return 0;
+    }
+
+    /**
+     * Extracts the Runs batted in for a player
+     * @param json json string that is retrieved by the API call
+     * @return returns the number of runs batted in for a player
+     */
+    public int getRBI(String json) {
+        return 0;
+    }
+
+    /**
+     * Extracts the batting average for a player
+     * @param json json string that is retrieved by the API call
+     * @return returns the number of batting average for a player
+     */
+    public int getBattingAvg(String json) {
+        return 0;
+    }
+
+    /**
+     * Extracts the Homeruns for a player
+     * @param json json string that is retrieved by the API call
+     * @return returns the number of homeruns for a player
+     */
+    public int getErrors(String json) {
+        return 0;
+    }
+
+    /**
+     * Extracts the Strikeouts for a player
+     * @param json json string that is retrieved by the API call
+     * @return returns the number of strikeouts for a player
+     */
+    public int getStrikeouts(String json) {
+        return 0;
+    }
+
 }
 
