@@ -46,7 +46,7 @@ public class NFLcompare extends AppCompatActivity {
         betterPlayer.setText("This is the better player");
         passingTDs1.setText(Integer.toString(getMethods.getPassingTD(player1.apiGetData())));
         passingTDs2.setText(Integer.toString(getMethods.getPassingTD(player2.apiGetData())));
-        
+
         interceptions1.setText(Integer.toString(getMethods.getInterceptions(player1.apiGetData())));
         interceptions2.setText(Integer.toString(getMethods.getInterceptions(player2.apiGetData())));
         passingYards1.setText(Integer.toString(getMethods.getPassingYards(player1.apiGetData())));
@@ -57,6 +57,7 @@ public class NFLcompare extends AppCompatActivity {
         completetionPercentage2.setText(Double.toString(getMethods.getPassPercentage(player2.apiGetData())));
         betterPlayer.setText(getMethods.betterPlayer());
         betterPlayer.setTextColor(Color.GREEN);
+
         nflcompareback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -52,6 +52,8 @@ public class MLB extends AppCompatActivity {
     public void launchMLBCompare() {
 
         Intent intent = new Intent(this, MLBcompare.class);
+        intent.putExtra("p1", input1);
+        intent.putExtra("p2",input2);
         startActivity(intent);
     }
 

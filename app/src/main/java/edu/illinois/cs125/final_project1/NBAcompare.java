@@ -1,5 +1,6 @@
 package edu.illinois.cs125.final_project1;
 
+import android.graphics.Color;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -69,7 +70,7 @@ public class NBAcompare extends AppCompatActivity {
 
 
         //set the player 2 data
-        nbaPlayer2name = findViewById(R.id.nba_player2_name);
+        nbaPlayer2name = findViewById(R.id.nba_player2_name)
         nbaPlayer2name.setText(input2);
 
         nbaPlayer2ppg = findViewById(R.id.nbaPlayer2ppg);
@@ -87,7 +88,56 @@ public class NBAcompare extends AppCompatActivity {
         nbaPlayer2tpg = findViewById(R.id.nbaPlayer2ftpg);
         nbaPlayer2tpg.setText(Double.toString(getMethods.getTovPerGame(player2.apiGetData())));
 
+        //Sets text of the better player
+
+        //sets color based on who wins the category
+        if (getMethods.getPPG(player1.apiGetData()) > getMethods.getPPG(player2.apiGetData())) {
+            nbaPlayer1ppg.setTextColor(Color.GREEN);
+            nbaPlayer2ppg.setTextColor(Color.RED);
+        } else {
+            nbaPlayer1ppg.setTextColor(Color.RED);
+            nbaPlayer2ppg.setTextColor(Color.GREEN);
+        }
+        if (getMethods.getAPG(player1.apiGetData()) > getMethods.getAPG(player2.apiGetData())) {
+            nbaPlayer1ppg.setTextColor(Color.GREEN);
+            nbaPlayer2ppg.setTextColor(Color.RED);
+        } else {
+            nbaPlayer1ppg.setTextColor(Color.RED);
+            nbaPlayer2ppg.setTextColor(Color.GREEN);
+        }
+        if (getMethods.getRPG(player1.apiGetData()) > getMethods.getRPG(player2.apiGetData())) {
+            nbaPlayer1ppg.setTextColor(Color.GREEN);
+            nbaPlayer2ppg.setTextColor(Color.RED);
+        } else {
+            nbaPlayer1ppg.setTextColor(Color.RED);
+            nbaPlayer2ppg.setTextColor(Color.GREEN);
+        }
+        if (getMethods.getTovPerGame(player1.apiGetData()) < getMethods.getTovPerGame(player2.apiGetData())) {
+            nbaPlayer1ppg.setTextColor(Color.GREEN);
+            nbaPlayer2ppg.setTextColor(Color.RED);
+        } else {
+            nbaPlayer1ppg.setTextColor(Color.RED);
+            nbaPlayer2ppg.setTextColor(Color.GREEN);
+        }
+        if (getMethods.getFg3PtPct(player1.apiGetData()) > getMethods.getFg3PtPct(player2.apiGetData())) {
+            nbaPlayer1ppg.setTextColor(Color.GREEN);
+            nbaPlayer2ppg.setTextColor(Color.RED);
+        } else {
+            nbaPlayer1ppg.setTextColor(Color.RED);
+            nbaPlayer2ppg.setTextColor(Color.GREEN);
+        }
+        if (getMethods.betterPlayer().equals(input1)) {
+            nbaPlayer1name.setTextColor(Color.GREEN);
+            nbaPlayer2name.setTextColor(Color.RED);
+            betterplayertext.setTextColor(Color.GREEN);
+        } else {
+            nbaPlayer1name.setTextColor(Color.RED);
+            nbaPlayer2name.setTextColor(Color.GREEN);
+            betterplayertext.setTextColor(Color.GREEN);
+        }
+
     }
+
 
 
 }
