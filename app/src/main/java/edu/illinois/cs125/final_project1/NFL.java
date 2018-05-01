@@ -13,6 +13,14 @@ public class NFL extends AppCompatActivity {
         setContentView(R.layout.activity_nfl);
 
         Button nflBack = (Button) findViewById(R.id.nfl_back_button);
+        Button nflCompare = (Button) findViewById(R.id.compare_nfl);
+        nflCompare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Data player1 = new Data("Drew-Brees","NFL");
+                System.out.println(getPassingTD(player1.apiGetData()));
+            }
+        });
 
 
         nflBack.setOnClickListener(new View.OnClickListener() {
@@ -25,6 +33,7 @@ public class NFL extends AppCompatActivity {
 
     }
 
+
     /**
      * extracts passing touchdowns from the json
      * @param json json string that is retrieved from the webapi call
@@ -33,6 +42,7 @@ public class NFL extends AppCompatActivity {
     public int getPassingTD(String json) {
         return 0;
     }
+
     /**
      * extracts interceptions from the json
      * @param json json string that is retrieved from the webapi call

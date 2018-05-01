@@ -14,10 +14,26 @@ public class Data {
         player = player;
         league = league;
     }
+    public String urlBuilder() {
+        String url = null;
+        if (league.equals("NBA")) {
+            url = "https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?player="+player;
+            return url;
+        }
+        if (league.equals("NFL")) {
+            url = "https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/cumulative_player_stats.json?player="+player;
+            return url;
+        }
+        if (league.equals("MLB")) {
+            url = "https://api.mysportsfeeds.com/v1.2/pull/mlb/2017-regular/cumulative_player_stats.json?player="+player;
+            return url;
+        }
+        return null;
+    }
 
     public String apiGetData(){
         try {
-                URL url = new URL (urlBuilder("Lebron-James"));
+                URL url = new URL (urlBuilder());
                 String username = "1kishan:CS125Project";
                 byte[] user = username.getBytes();
                 String encoding = Base64.getEncoder().encodeToString(user);
@@ -46,10 +62,7 @@ public class Data {
             }
             return null;
         }
-        public String urlBuilder(String player) {
-            String x = "https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?player=Lebron-James";
-            return x;
-        }
+
 
 }
 
