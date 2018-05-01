@@ -40,7 +40,7 @@
         android:layout_height="23dp"
         android:layout_alignTop="@+id/textView8"
         android:layout_toEndOf="@+id/compare_nfl"
-        android:text="Player 2 Info" />
+        android:text="Player 2 Name" />
 
     <TextView
         android:id="@+id/textView8"
@@ -50,7 +50,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="42dp"
         android:layout_marginTop="107dp"
-        android:text="Player 1 Info" />
+        android:text="Player 1 Name" />
 
     <TextView
         android:id="@+id/textView2"

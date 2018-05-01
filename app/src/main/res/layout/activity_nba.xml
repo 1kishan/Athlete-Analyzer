@@ -59,7 +59,7 @@
         android:layout_marginEnd="-16dp"
         android:layout_marginTop="92dp"
         android:layout_toStartOf="@+id/textView"
-        android:text="Player 1 Info" />
+        android:text="Player 1 Name" />
 
     <TextView
         android:id="@+id/textView5"
@@ -67,7 +67,7 @@
         android:layout_height="23dp"
         android:layout_alignTop="@+id/textView3"
         android:layout_toEndOf="@+id/nba_back_button"
-        android:text="Player 2 Info" />
+        android:text="Player 2 Name" />
 
     <TextView
         android:id="@+id/nba_ppg_stats_p1"
