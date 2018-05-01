@@ -92,7 +92,7 @@ public class NBAcompare extends AppCompatActivity {
         betterplayertext = findViewById(R.id.the_better_player);
         betterplayertext.setText("The better player is " + getMethods.betterPlayer(input1,input2));
         betterplayertext.setTextColor(Color.GREEN);
-
+        //bet
     }
 
 
