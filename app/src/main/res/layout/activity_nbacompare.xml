@@ -143,6 +143,16 @@
         android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <TextView
+        android:id="@+id/the_better_player"
+        android:layout_width="353dp"
+        android:layout_height="88dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <TextView
         android:id="@+id/rebounds_per_game_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -168,16 +178,5 @@
         android:layout_centerHorizontal="true"
         android:text="Turnovers Per Game"
         android:textAppearance="@android:style/TextAppearance.Material.Medium" />
-
-    <TextView
-        android:id="@+id/the_better_player"
-        android:layout_width="353dp"
-        android:layout_height="88dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp"
-        android:gravity="center"
-        android:text="The better player is: "
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
 </RelativeLayout>

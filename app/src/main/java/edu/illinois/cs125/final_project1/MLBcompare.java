@@ -21,6 +21,11 @@ public class MLBcompare extends AppCompatActivity {
     public TextView strikeouts2;
     public TextView errors2;
 
+    public TextView player1name;
+    public TextView player2name;
+
+    public TextView bettermlbplayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,27 +40,50 @@ public class MLBcompare extends AppCompatActivity {
         Data player2 = new Data(input2, "MLB");
 
         //player 1 data
+
+        player1name = findViewById(R.id.mlbname1);
+        player1name.setText(input1);
+
+        player2name = findViewById(R.id.mlbname2);
+        player2name.setText(input2);
+
+        homeRuns1 = findViewById(R.id.hr1);
         homeRuns1.setText(Integer.toString(getMethods.getHR(player1.apiGetData())));
 
+        rbi1 = findViewById(R.id.rbi1);
         rbi1.setText(Integer.toString(getMethods.getRBI(player1.apiGetData())));
 
+        battingAvg1 = findViewById(R.id.bavg1);
         battingAvg1.setText(Double.toString(getMethods.getBattingAvg(player1.apiGetData())));
 
+        strikeouts1 = findViewById(R.id.so1);
         strikeouts1.setText(Integer.toString(getMethods.getStrikeouts(player1.apiGetData())));
 
+        errors1 = findViewById(R.id.err1);
         errors1.setText(Integer.toString(getMethods.getErrors(player1.apiGetData())));
 
 
         //player 2 data
+        homeruns2 = findViewById(R.id.hr2);
         homeruns2.setText(Integer.toString(getMethods.getHR(player2.apiGetData())));
 
+        rbi2 = findViewById(R.id.rbi2);
         rbi2.setText(Integer.toString(getMethods.getRBI(player2.apiGetData())));
 
+        battingAvg2 = findViewById(R.id.bavg2);
         battingAvg2.setText(Double.toString(getMethods.getBattingAvg(player2.apiGetData())));
 
+        strikeouts2 = findViewById(R.id.so2);
         strikeouts2.setText(Integer.toString(getMethods.getStrikeouts(player2.apiGetData())));
 
+        errors2 = findViewById(R.id.err2);
         errors2.setText(Integer.toString(getMethods.getErrors(player2.apiGetData())));
+
+        //set better player
+        bettermlbplayer = findViewById(R.id.the_better_player3);
+        bettermlbplayer.setText("The better player is: " + getMethods.betterPlayer(input1,input2));
+        bettermlbplayer.setTextColor(Color.GREEN);
+
 
 
         //Sets Color

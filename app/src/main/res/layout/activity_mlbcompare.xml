@@ -1,25 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MLBcompare">
 
+    <TextView
+        android:id="@+id/the_better_player3"
+        android:layout_width="353dp"
+        android:layout_height="88dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <TextView
+        android:id="@+id/mlbname1"
+        android:layout_width="193dp"
+        android:layout_height="68dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:textAppearance="@android:style/TextAppearance.Material.Large" />
+
+    <TextView
+        android:id="@+id/mlbname2"
+        android:layout_width="193dp"
+        android:layout_height="68dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:textAppearance="@android:style/TextAppearance.Material.Large" />
+
+    <TextView
+        android:id="@+id/strikeouts_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/err1"
+        android:layout_centerHorizontal="true"
+        android:text="Total Strikeouts"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+    <TextView
+        android:id="@+id/hr_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mlbname1"
+        android:layout_centerHorizontal="true"
+        android:text="Total Home Runs"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+    <TextView
+        android:id="@+id/rbi_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hr1"
+        android:layout_centerHorizontal="true"
+        android:text="Total RBIs"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+    <TextView
+        android:id="@+id/bavg_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rbi1"
+        android:layout_centerHorizontal="true"
+        android:text="Batting Average"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+    <TextView
+        android:id="@+id/errors_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bavg1"
+        android:layout_centerHorizontal="true"
+        android:text="Total Errors"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+    <TextView
+        android:id="@+id/hr1"
+        android:layout_width="118dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hr_label"
+        android:layout_toStartOf="@+id/mlb_compare_back"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/rbi1"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/hr1"
+        android:layout_below="@+id/rbi_label"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/err1"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/mlb_compare_back"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/so1"
+        android:layout_width="122dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/hr1"
+        android:layout_below="@+id/strikeouts_label"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/so2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/so1"
+        android:layout_toEndOf="@+id/mlb_compare_back"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/err2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/err1"
+        android:layout_toEndOf="@+id/mlb_compare_back"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/rbi2"
+        android:layout_width="121dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/hr2"
+        android:layout_alignTop="@+id/rbi1"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/hr2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/hr1"
+        android:layout_marginEnd="37dp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/bavg1"
+        android:layout_width="122dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/hr1"
+        android:layout_below="@+id/bavg_label"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/bavg2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/bavg1"
+        android:layout_toEndOf="@+id/mlb_compare_back"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
     <Button
         android:id="@+id/mlb_compare_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="447dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Back" />
 
-    <TextView
-        android:id="@+id/mlbcomparetext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stats Comparison"
-        tools:layout_editor_absoluteX="124dp"
-        tools:layout_editor_absoluteY="27dp" />
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
