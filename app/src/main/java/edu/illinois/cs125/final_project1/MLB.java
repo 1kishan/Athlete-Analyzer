@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 public class MLB extends AppCompatActivity {
     public TextView api;
     Data temp = new Data("Lebron-James","NBA");
@@ -37,7 +41,8 @@ public class MLB extends AppCompatActivity {
                 Data player2 = new Data(input2, "MLB");
                 System.out.println(player1.urlBuilder());
                 System.out.println(player2.urlBuilder());
-                launchMLBCompare(); }
+                launchMLBCompare();
+            }
         });
 
     }
@@ -54,7 +59,16 @@ public class MLB extends AppCompatActivity {
      * @return returns the number of homeruns for a player
      */
     public int getHR(String json) {
-        return 0;
+        if (json == null) {
+            return 0;
+        }
+        JsonParser parser = new JsonParser();
+        JsonObject rootObj = parser.parse(json).getAsJsonObject();
+        JsonObject cumulativeplayerstats = rootObj.getAsJsonObject("cumulativeplayerstats");
+        JsonArray playerStatsArray = cumulativeplayerstats.get("playerstatsentry").getAsJsonArray();
+        int qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("Homeruns").
+                getAsJsonObject().get("#text").getAsInt();
+        return qbRating;
     }
 
     /**
@@ -63,7 +77,16 @@ public class MLB extends AppCompatActivity {
      * @return returns the number of runs batted in for a player
      */
     public int getRBI(String json) {
-        return 0;
+        if (json == null) {
+            return 0;
+        }
+        JsonParser parser = new JsonParser();
+        JsonObject rootObj = parser.parse(json).getAsJsonObject();
+        JsonObject cumulativeplayerstats = rootObj.getAsJsonObject("cumulativeplayerstats");
+        JsonArray playerStatsArray = cumulativeplayerstats.get("playerstatsentry").getAsJsonArray();
+        int qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("RunsBattedIn").
+                getAsJsonObject().get("#text").getAsInt();
+        return qbRating;
     }
 
     /**
@@ -71,8 +94,17 @@ public class MLB extends AppCompatActivity {
      * @param json json string that is retrieved by the API call
      * @return returns the number of batting average for a player
      */
-    public int getBattingAvg(String json) {
-        return 0;
+    public double getBattingAvg(String json) {
+        if (json == null) {
+            return 0;
+        }
+        JsonParser parser = new JsonParser();
+        JsonObject rootObj = parser.parse(json).getAsJsonObject();
+        JsonObject cumulativeplayerstats = rootObj.getAsJsonObject("cumulativeplayerstats");
+        JsonArray playerStatsArray = cumulativeplayerstats.get("playerstatsentry").getAsJsonArray();
+        double qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("BattingAvg").
+                getAsJsonObject().get("#text").getAsDouble();
+        return qbRating;
     }
 
     /**
@@ -81,7 +113,16 @@ public class MLB extends AppCompatActivity {
      * @return returns the number of homeruns for a player
      */
     public int getErrors(String json) {
-        return 0;
+        if (json == null) {
+            return 0;
+        }
+        JsonParser parser = new JsonParser();
+        JsonObject rootObj = parser.parse(json).getAsJsonObject();
+        JsonObject cumulativeplayerstats = rootObj.getAsJsonObject("cumulativeplayerstats");
+        JsonArray playerStatsArray = cumulativeplayerstats.get("playerstatsentry").getAsJsonArray();
+        int qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("Errors").
+                getAsJsonObject().get("#text").getAsInt();
+        return qbRating;
     }
 
     /**
@@ -90,7 +131,16 @@ public class MLB extends AppCompatActivity {
      * @return returns the number of strikeouts for a player
      */
     public int getStrikeouts(String json) {
-        return 0;
+        if (json == null) {
+            return 0;
+        }
+        JsonParser parser = new JsonParser();
+        JsonObject rootObj = parser.parse(json).getAsJsonObject();
+        JsonObject cumulativeplayerstats = rootObj.getAsJsonObject("cumulativeplayerstats");
+        JsonArray playerStatsArray = cumulativeplayerstats.get("playerstatsentry").getAsJsonArray();
+        int qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("BatterStrikeouts").
+                getAsJsonObject().get("#text").getAsInt();
+        return qbRating;
     }
 
 }
