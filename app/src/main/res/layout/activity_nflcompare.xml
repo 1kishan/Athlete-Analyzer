@@ -7,6 +7,17 @@
     tools:context=".NFLcompare">
 
     <TextView
+        android:id="@+id/the_better_player2"
+        android:layout_width="353dp"
+        android:layout_height="88dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="91dp"
+        android:gravity="center"
+        android:text="The better player is: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <TextView
         android:id="@+id/nflplayer1tpd"
         android:layout_width="118dp"
         android:layout_height="wrap_content"
