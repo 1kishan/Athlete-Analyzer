@@ -170,9 +170,9 @@ public class NFL extends AppCompatActivity {
             playerB++;
         }
         if (playerA > playerB) {
-            return input1;
+            return player1;
         } else {
-            return input2;
+            return player2;
         }
     }
 

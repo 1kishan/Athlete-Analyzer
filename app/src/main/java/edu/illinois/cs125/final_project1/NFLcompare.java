@@ -82,9 +82,8 @@ public class NFLcompare extends AppCompatActivity {
         completetionPercentage2 = findViewById(R.id.nflplayer2cp);
         completetionPercentage2.setText(Double.toString(getMethods.getPassPercentage(player2.apiGetData())));
 
-
-
-        nflbetterPlayer.setText("The better player is: " + getMethods.betterPlayer(input1,input2));
+        nflbetterPlayer = findViewById(R.id.the_better_player2);
+        nflbetterPlayer.setText("The better player is: " + getMethods.betterPlayer(input1, input2));
         nflbetterPlayer.setTextColor(Color.GREEN);
 
 
