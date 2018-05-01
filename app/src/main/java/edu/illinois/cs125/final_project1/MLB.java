@@ -146,11 +146,11 @@ public class MLB extends AppCompatActivity {
                 getAsJsonObject().get("#text").getAsInt();
         return qbRating;
     }
-    public String betterPlayer() {
+    public String betterPlayer(String player1, String player2) {
         int playerA = 0;
         int playerB = 0;
-        Data p1 = new Data(input1, "MLB");
-        Data p2 = new Data(input2, "MLB");
+        Data p1 = new Data(player1, "MLB");
+        Data p2 = new Data(player2, "MLB");
         if (getHR(p1.apiGetData()) > getHR(p2.apiGetData())) {
             playerA++;
         } else {
@@ -177,9 +177,9 @@ public class MLB extends AppCompatActivity {
             playerB++;
         }
         if (playerA > playerB) {
-            return input1;
+            return player1;
         } else {
-            return input2;
+            return player2;
         }
     }
 
