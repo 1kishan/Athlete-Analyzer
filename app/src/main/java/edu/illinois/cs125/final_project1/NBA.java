@@ -6,12 +6,18 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class NBA extends AppCompatActivity {
+
+    String input1;
+    String input2;
+
+    public TextView nbaPlayer1ppg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,39 +26,38 @@ public class NBA extends AppCompatActivity {
 
 
         Button nbaBack = (Button) findViewById(R.id.nba_back_button);
-
-
         nbaBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        Button nbaCompare = findViewById(R.id.compare_nba);
+
+
         final TextInputEditText firstPlayer = findViewById(R.id.nba_first);
         final TextInputEditText secondPlayer = findViewById(R.id.nba_second);
+
+
+
+        Button nbaCompare = findViewById(R.id.compare_nba);
         nbaCompare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String input1 = firstPlayer.getText().toString();
+                input1 = firstPlayer.getText().toString();
                 input1 = input1.replace(' ','-');
-                String input2 = secondPlayer.getText().toString();
+                input2 = secondPlayer.getText().toString();
                 input2 = input2.replace(' ','-');
-                Data player1 = new Data(input1,"NBA");
-                Data player2 = new Data(input2, "NBA");
                 launchNBAcompare();
-                System.out.println(getAPG(player1.apiGetData()));
-                System.out.println(getFg3PtPct(player1.apiGetData()));
-                System.out.println(getPPG(player1.apiGetData()));
-                System.out.println(getRPG(player1.apiGetData()));
-                System.out.println(getTovPerGame(player1.apiGetData()));
+
             }
         });
 
 
     }
     public void launchNBAcompare() {
-        Intent intent = new Intent(this, NBA.class);
+        Intent intent = new Intent(this, NBAcompare.class);
+        intent.putExtra("p1", input1);
+        intent.putExtra("p2",input2);
         startActivity(intent);
     }
 

@@ -13,8 +13,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class MLB extends AppCompatActivity {
+
     public TextView api;
     Data temp = new Data("Lebron-James","NBA");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +29,13 @@ public class MLB extends AppCompatActivity {
                 finish();
             }
         });
-        Button mlbCompare = (Button) findViewById(R.id.compare_mlb);
+
+
+
         final TextInputEditText firstPlayer = findViewById(R.id.mlb_first);
         final TextInputEditText secondPlayer = findViewById(R.id.mlb_second);
+
+        Button mlbCompare = (Button) findViewById(R.id.compare_mlb);
         mlbCompare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

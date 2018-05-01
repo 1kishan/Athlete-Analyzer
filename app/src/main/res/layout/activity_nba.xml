@@ -29,7 +29,9 @@
         android:id="@+id/compare_nba"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="123dp"
         android:text="Compare!" />
 
     <TextView
@@ -66,4 +68,14 @@
         android:layout_alignTop="@+id/textView3"
         android:layout_toEndOf="@+id/nba_back_button"
         android:text="Player 2 Info" />
+
+    <TextView
+        android:id="@+id/nba_ppg_stats_p1"
+        android:layout_width="142dp"
+        android:layout_height="49dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="194dp" />
+
 </RelativeLayout>
