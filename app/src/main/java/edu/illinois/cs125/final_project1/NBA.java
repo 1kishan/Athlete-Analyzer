@@ -150,11 +150,12 @@ public class NBA extends AppCompatActivity {
                 getAsJsonObject().get("#text").getAsDouble();
         return qbRating;
     }
-    public String betterPlayer() {
+
+    public String betterPlayer(String player1, String player2) {
         int playerA = 0;
         int playerB = 0;
-        Data p1 = new Data(input1, "NBA");
-        Data p2 = new Data(input2, "NBA");
+        Data p1 = new Data(player1, "NBA");
+        Data p2 = new Data(player2, "NBA");
         if (getAPG(p1.apiGetData()) > getAPG(p2.apiGetData())) {
             playerA++;
         } else {
@@ -181,9 +182,9 @@ public class NBA extends AppCompatActivity {
             playerB++;
         }
         if (playerA > playerB) {
-            return input1;
+            return player1;
         } else {
-            return input2;
+            return player2;
         }
     }
 
