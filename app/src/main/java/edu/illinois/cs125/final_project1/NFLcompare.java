@@ -41,11 +41,14 @@ public class NFLcompare extends AppCompatActivity {
         String input2 = intent.getStringExtra("p2");
         Data player1 = new Data(input1,"NFL");
         Data player2 = new Data(input2, "NFL");
-        System.out.println(player1.urlBuilder());
+        String jsonPlayer1 = player1.apiGetData();
+        String jsonPlayer2 = player2.apiGetData();
         String p1Name = input1;
         String p2Name = input2;
         p1Name = p1Name.replace('-',' ');
         p2Name = p2Name.replace('-',' ');
+        
+        
         nflplayer1name = findViewById(R.id.nfl_player1_name);
         nflplayer1name.setText(p1Name);
 
@@ -55,70 +58,70 @@ public class NFLcompare extends AppCompatActivity {
 
         //set player 1 info
         passingTDs1 = findViewById(R.id.nflplayer1tpd);
-        passingTDs1.setText(Integer.toString(getMethods.getPassingTD(player1.apiGetData())));
+        passingTDs1.setText(Integer.toString(getMethods.getPassingTD(jsonPlayer1)));
 
         interceptions1 = findViewById(R.id.nflplayer1ti);
-        interceptions1.setText(Integer.toString(getMethods.getInterceptions(player1.apiGetData())));
+        interceptions1.setText(Integer.toString(getMethods.getInterceptions(jsonPlayer1)));
 
         passingYards1 = findViewById(R.id.nflplayer1tpy);
-        passingYards1.setText(Integer.toString(getMethods.getPassingYards(player1.apiGetData())));
+        passingYards1.setText(Integer.toString(getMethods.getPassingYards(jsonPlayer1)));
 
         qbRating1 = findViewById(R.id.nflplayer1qbr);
-        qbRating1.setText(Double.toString(getMethods.getQBRating(player1.apiGetData())));
+        qbRating1.setText(Double.toString(getMethods.getQBRating(jsonPlayer1)));
 
         completetionPercentage1 = findViewById(R.id.nflplayer1cp);
-        completetionPercentage1.setText(Double.toString(getMethods.getPassPercentage(player1.apiGetData())));
+        completetionPercentage1.setText(Double.toString(getMethods.getPassPercentage(jsonPlayer1)));
 
         //set player 2 info
         passingTDs2 = findViewById(R.id.nflplayer2tpd);
-        passingTDs2.setText(Integer.toString(getMethods.getPassingTD(player2.apiGetData())));
+        passingTDs2.setText(Integer.toString(getMethods.getPassingTD(jsonPlayer2)));
 
         interceptions2 = findViewById(R.id.nflplayer2ti);
-        interceptions2.setText(Integer.toString(getMethods.getInterceptions(player2.apiGetData())));
+        interceptions2.setText(Integer.toString(getMethods.getInterceptions(jsonPlayer2)));
 
         passingYards2 = findViewById(R.id.nflplayer2tpy);
-        passingYards2.setText(Integer.toString(getMethods.getPassingYards(player2.apiGetData())));
+        passingYards2.setText(Integer.toString(getMethods.getPassingYards(jsonPlayer2)));
 
         qbRating2 = findViewById(R.id.nflplayer2qbr);
-        qbRating2.setText(Double.toString(getMethods.getQBRating(player2.apiGetData())));
+        qbRating2.setText(Double.toString(getMethods.getQBRating(jsonPlayer2)));
 
         completetionPercentage2 = findViewById(R.id.nflplayer2cp);
-        completetionPercentage2.setText(Double.toString(getMethods.getPassPercentage(player2.apiGetData())));
+        completetionPercentage2.setText(Double.toString(getMethods.getPassPercentage(jsonPlayer2)));
 
         nflbetterPlayer = findViewById(R.id.the_better_player2);
         nflbetterPlayer.setText("The better player is: " + getMethods.betterPlayer(input1, input2));
         nflbetterPlayer.setTextColor(Color.GREEN);
 
         //sets color of winner to green.. loser of category to red
-        if (getMethods.getPassPercentage(player1.apiGetData()) > getMethods.getPassPercentage(player2.apiGetData())) {
+        if (getMethods.getPassPercentage(jsonPlayer1) > getMethods.getPassPercentage(jsonPlayer2)) {
             completetionPercentage1.setTextColor(Color.GREEN);
             completetionPercentage2.setTextColor(Color.RED);
         } else {
             completetionPercentage2.setTextColor(Color.GREEN);
             completetionPercentage1.setTextColor(Color.RED);
         }
-        if (getMethods.getQBRating(player1.apiGetData()) > getMethods.getQBRating(player2.apiGetData())) {
+        if (getMethods.getQBRating(jsonPlayer1) > getMethods.getQBRating(jsonPlayer2)) {
             qbRating1.setTextColor(Color.GREEN);
             qbRating2.setTextColor(Color.RED);
         } else {
             qbRating2.setTextColor(Color.GREEN);
             qbRating1.setTextColor(Color.RED);
         }
-        if (getMethods.getInterceptions(player1.apiGetData()) < getMethods.getInterceptions(player2.apiGetData())) {
+        if (getMethods.getInterceptions(jsonPlayer1) < getMethods.getInterceptions(jsonPlayer2)) {
             interceptions1.setTextColor(Color.GREEN);
             interceptions2.setTextColor(Color.RED);
         } else {
             interceptions2.setTextColor(Color.GREEN);
             interceptions1.setTextColor(Color.RED);
         }
-        if (getMethods.getPassingYards(player1.apiGetData()) > getMethods.getPassingYards(player2.apiGetData())) {
+        if (getMethods.getPassingYards(jsonPlayer1) > getMethods.getPassingYards(jsonPlayer2)) {
             passingYards1.setTextColor(Color.GREEN);
             passingYards2.setTextColor(Color.RED);
         } else {
             passingYards2.setTextColor(Color.GREEN);
             passingYards1.setTextColor(Color.RED);
         }
-        if (getMethods.getPassingTD(player1.apiGetData()) > getMethods.getPassingTD(player2.apiGetData())) {
+        if (getMethods.getPassingTD(jsonPlayer1) > getMethods.getPassingTD(jsonPlayer2)) {
             passingTDs1.setTextColor(Color.GREEN);
             passingTDs2.setTextColor(Color.RED);
         } else {

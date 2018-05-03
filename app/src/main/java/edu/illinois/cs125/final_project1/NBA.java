@@ -5,12 +5,22 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Base64;
 
 public class NBA extends AppCompatActivity {
 
@@ -23,7 +33,8 @@ public class NBA extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nba);
-
+        Intent intent = getIntent();
+        ArrayList<String> x = intent.getStringArrayListExtra("players");
 
         Button nbaBack = (Button) findViewById(R.id.nba_back_button);
         nbaBack.setOnClickListener(new View.OnClickListener() {
@@ -33,9 +44,16 @@ public class NBA extends AppCompatActivity {
             }
         });
 
+//
+//        final TextInputEditText firstPlayer = findViewById(R.id.nba_first);
+//        final TextInputEditText secondPlayer = findViewById(R.id.nba_second);
+        final AutoCompleteTextView firstPlayer = findViewById(R.id.nba_first);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,x);
+        firstPlayer.setAdapter(adapter);
 
-        final TextInputEditText firstPlayer = findViewById(R.id.nba_first);
-        final TextInputEditText secondPlayer = findViewById(R.id.nba_second);
+        final AutoCompleteTextView secondPlayer = findViewById(R.id.nba_second);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,x);
+        secondPlayer.setAdapter(adapter1);
 
 
 
@@ -43,6 +61,7 @@ public class NBA extends AppCompatActivity {
         nbaCompare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println(players(getPlayers()).toString());
                 input1 = firstPlayer.getText().toString();
                 input1 = input1.replace(' ','-');
                 input2 = secondPlayer.getText().toString();
@@ -185,6 +204,56 @@ public class NBA extends AppCompatActivity {
         } else {
             return player2;
         }
+    }
+
+    public static String getPlayers() {
+        try {
+            URL url = new URL ("https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/roster_players.json?fordate=20180316");
+            String username = "1kishan:CS125Project";
+            byte[] user = username.getBytes();
+            String encoding = Base64.getEncoder().encodeToString(user);
+
+            byte[] encodedBytes = Base64.getEncoder().encode("Test".getBytes());
+            System.out.println("encodedBytes " + new String(encodedBytes));
+            byte[] decodedBytes = Base64.getDecoder().decode(encodedBytes);
+            System.out.println("decodedBytes " + new String(decodedBytes));
+
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            //connection.setDoOutput(true);
+            connection.setRequestProperty("Authorization", "Basic " + encoding);
+            InputStream content = (InputStream)connection.getInputStream();
+            BufferedReader in =
+                    new BufferedReader(new InputStreamReader(content));
+            String line;
+            String jsonPlayers = "";
+            while ((line = in.readLine()) != null) {
+                jsonPlayers += line;
+            }
+            return jsonPlayers;
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static ArrayList<String>  players(String jsonPlayers) {
+        if (jsonPlayers == null) {
+            return null;
+        }
+        ArrayList<String> allPlayers = new ArrayList<>();
+        JsonParser parser = new JsonParser();
+        JsonObject rootObj = parser.parse(jsonPlayers).getAsJsonObject();
+        JsonObject rosterplayers = rootObj.getAsJsonObject("rosterplayers");
+        JsonArray playerentry = rosterplayers.get("playerentry").getAsJsonArray();
+        for (int i = 0; i < playerentry.size(); i++) {
+            String first = playerentry.get(i).getAsJsonObject().get("player").getAsJsonObject().get("FirstName").getAsString();
+            String last =  playerentry.get(i).getAsJsonObject().get("player").getAsJsonObject().get("LastName").getAsString();
+            String fullName = first +" "+ last;
+            allPlayers.add(fullName);
+        }
+        return allPlayers;
+
     }
 
 

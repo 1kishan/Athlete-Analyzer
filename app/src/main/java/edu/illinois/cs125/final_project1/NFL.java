@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
 import com.google.gson.JsonArray;
@@ -22,8 +24,13 @@ public class NFL extends AppCompatActivity {
 
         Button nflBack =  findViewById(R.id.nfl_back_button);
         Button nflCompare = findViewById(R.id.compare_nfl);
-        final TextInputEditText firstPlayer = findViewById(R.id.nfl_first);
-        final TextInputEditText secondPlayer = findViewById(R.id.nfl_second);
+        final AutoCompleteTextView firstPlayer = findViewById(R.id.nfl_first);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,quarterBacks);
+        firstPlayer.setAdapter(adapter);
+
+        final AutoCompleteTextView secondPlayer = findViewById(R.id.nfl_second);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,quarterBacks);
+        secondPlayer.setAdapter(adapter1);
 
         nflCompare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,6 +182,12 @@ public class NFL extends AppCompatActivity {
             return player2;
         }
     }
+    private static String[] quarterBacks = new String[] {"Tom Brady", "Drew Brees", "Aaron Rodgers", "Jay Cutler",
+            "T. J. Yates","Jameis Winston", "Russell Wilson","Mitchell Trubisky","Tyrod Taylor","Drew Stanton","Matthew Stafford",
+        "Matt Ryan","Philip Rivers","Dak Prescott","Bryce Petty","Cam Newton","Marcus Mariota","Sean Mannion","Eli Manning","Patrick Mahomes II",
+        "Paxton Lynch","DeShone Kizer","Case Keenum","Landry Jones","Brett Hundley","Jimmy Garoppolo","Nick Foles","Joe Flacco","Andy Dalton",
+        "Kirk Cousins","Derek Carr","Jacoby Brissett","Blake Bortles"};
+
 
 
 }
