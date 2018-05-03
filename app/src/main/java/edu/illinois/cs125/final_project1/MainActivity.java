@@ -7,8 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
+    NBA players = new NBA();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +51,16 @@ public class MainActivity extends AppCompatActivity {
     public void launchMLB() {
 
         Intent intent = new Intent(this, MLB.class);
+        ArrayList<String> all = (MLB.players(MLB.getPlayers()));
+        intent.putExtra("players", all);
         startActivity(intent);
     }
 
     public void launchNBA() {
 
         Intent intent = new Intent(this, NBA.class);
+        ArrayList<String> all = (NBA.players(NBA.getPlayers()));
+        intent.putExtra("players", all);
         startActivity(intent);
     }
 

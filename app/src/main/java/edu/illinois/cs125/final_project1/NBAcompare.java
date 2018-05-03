@@ -47,6 +47,8 @@ public class NBAcompare extends AppCompatActivity {
 
         Data player1 = new Data(input1,"NBA");
         Data player2 = new Data(input2, "NBA");
+        String jsonPlayer1 = player1.apiGetData();
+        String jsonPlayer2 = player2.apiGetData();
         String p1Name = input1;
         String p2Name = input2;
         p1Name = p1Name.replace('-',' ');
@@ -57,19 +59,19 @@ public class NBAcompare extends AppCompatActivity {
         nbaPlayer1name.setText(p1Name);
 
         nbaPlayer1ppg = findViewById(R.id.nbaPlayer1ppg);
-        nbaPlayer1ppg.setText(Double.toString(getMethods.getPPG(player1.apiGetData())));
+        nbaPlayer1ppg.setText(Double.toString(getMethods.getPPG(jsonPlayer1)));
 
         nbaPlayer1apg = findViewById(R.id.nbaPlayer1apg);
-        nbaPlayer1apg.setText(Double.toString(getMethods.getAPG(player1.apiGetData())));
+        nbaPlayer1apg.setText(Double.toString(getMethods.getAPG(jsonPlayer1)));
 
         nbaPlayer1rpg = findViewById(R.id.nbaPlayer1rpg);
-        nbaPlayer1rpg.setText(Double.toString(getMethods.getRPG(player1.apiGetData())));
+        nbaPlayer1rpg.setText(Double.toString(getMethods.getRPG(jsonPlayer1)));
 
         nbaPlayer1fg3ptpct = findViewById(R.id.nbaPlayer1fg3ptpct);
-        nbaPlayer1fg3ptpct.setText(Double.toString(getMethods.getFg3PtPct(player1.apiGetData())));
+        nbaPlayer1fg3ptpct.setText(Double.toString(getMethods.getFg3PtPct(jsonPlayer1)));
 
         nbaPlayer1tpg = findViewById(R.id.nbaPlayer1ftpg);
-        nbaPlayer1tpg.setText(Double.toString(getMethods.getTovPerGame(player1.apiGetData())));
+        nbaPlayer1tpg.setText(Double.toString(getMethods.getTovPerGame(jsonPlayer1)));
 
 
         //set the player 2 data
@@ -77,54 +79,54 @@ public class NBAcompare extends AppCompatActivity {
         nbaPlayer2name.setText(p2Name);
 
         nbaPlayer2ppg = findViewById(R.id.nbaPlayer2ppg);
-        nbaPlayer2ppg.setText(Double.toString(getMethods.getPPG(player2.apiGetData())));
+        nbaPlayer2ppg.setText(Double.toString(getMethods.getPPG(jsonPlayer2)));
 
         nbaPlayer2apg = findViewById(R.id.nbaPlayer2apg);
-        nbaPlayer2apg.setText(Double.toString(getMethods.getAPG(player2.apiGetData())));
+        nbaPlayer2apg.setText(Double.toString(getMethods.getAPG(jsonPlayer2)));
 
         nbaPlayer2rpg = findViewById(R.id.nbaPlayer2rpg);
-        nbaPlayer2rpg.setText(Double.toString(getMethods.getRPG(player2.apiGetData())));
+        nbaPlayer2rpg.setText(Double.toString(getMethods.getRPG(jsonPlayer2)));
 
         nbaPlayer2fg3ptpct = findViewById(R.id.nbaPlayer2fg3ptpct);
-        nbaPlayer2fg3ptpct.setText(Double.toString(getMethods.getFg3PtPct(player2.apiGetData())));
+        nbaPlayer2fg3ptpct.setText(Double.toString(getMethods.getFg3PtPct(jsonPlayer2)));
 
         nbaPlayer2tpg = findViewById(R.id.nbaPlayer2ftpg);
-        nbaPlayer2tpg.setText(Double.toString(getMethods.getTovPerGame(player2.apiGetData())));
+        nbaPlayer2tpg.setText(Double.toString(getMethods.getTovPerGame(jsonPlayer2)));
 
         //set the better player
         betterplayertext = findViewById(R.id.the_better_player);
         betterplayertext.setText("The better player is: " + getMethods.betterPlayer(input1,input2));
         betterplayertext.setTextColor(Color.GREEN);
 
-        if (getMethods.getFg3PtPct(player1.apiGetData()) > getMethods.getFg3PtPct(player2.apiGetData())) {
+        if (getMethods.getFg3PtPct(jsonPlayer1) > getMethods.getFg3PtPct(jsonPlayer2)) {
             nbaPlayer1fg3ptpct.setTextColor(Color.GREEN);
             nbaPlayer2fg3ptpct.setTextColor(Color.RED);
         } else {
             nbaPlayer2fg3ptpct.setTextColor(Color.GREEN);
             nbaPlayer1fg3ptpct.setTextColor(Color.RED);
         }
-        if (getMethods.getRPG(player1.apiGetData()) > getMethods.getRPG(player2.apiGetData())) {
+        if (getMethods.getRPG(jsonPlayer1) > getMethods.getRPG(jsonPlayer2)) {
             nbaPlayer1rpg.setTextColor(Color.GREEN);
             nbaPlayer2rpg.setTextColor(Color.RED);
         } else {
             nbaPlayer2rpg.setTextColor(Color.GREEN);
             nbaPlayer1rpg.setTextColor(Color.RED);
         }
-        if (getMethods.getTovPerGame(player1.apiGetData()) < getMethods.getTovPerGame(player2.apiGetData())) {
+        if (getMethods.getTovPerGame(jsonPlayer1) < getMethods.getTovPerGame(jsonPlayer2)) {
             nbaPlayer1tpg.setTextColor(Color.GREEN);
             nbaPlayer2tpg.setTextColor(Color.RED);
         } else {
             nbaPlayer2tpg.setTextColor(Color.GREEN);
             nbaPlayer1tpg.setTextColor(Color.RED);
         }
-        if (getMethods.getAPG(player1.apiGetData()) > getMethods.getAPG(player2.apiGetData())) {
+        if (getMethods.getAPG(jsonPlayer1) > getMethods.getAPG(jsonPlayer2)) {
             nbaPlayer1apg.setTextColor(Color.GREEN);
             nbaPlayer2apg.setTextColor(Color.RED);
         } else {
             nbaPlayer2apg.setTextColor(Color.GREEN);
             nbaPlayer1apg.setTextColor(Color.RED);
         }
-        if (getMethods.getPPG(player1.apiGetData()) > getMethods.getPPG(player2.apiGetData())) {
+        if (getMethods.getPPG(jsonPlayer1) > getMethods.getPPG(jsonPlayer2)) {
             nbaPlayer1ppg.setTextColor(Color.GREEN);
             nbaPlayer2ppg.setTextColor(Color.RED);
         } else {

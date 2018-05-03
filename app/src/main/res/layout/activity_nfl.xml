@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".NFL">
 
-    <android.support.design.widget.TextInputEditText
+    <AutoCompleteTextView
         android:id="@+id/nfl_second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         android:layout_marginEnd="22dp"
         android:hint="pick second player" />
 
-    <android.support.design.widget.TextInputEditText
+    <AutoCompleteTextView
         android:id="@+id/nfl_first"
         android:layout_width="135dp"
         android:layout_height="wrap_content"
@@ -68,5 +68,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="Return to Home" />
+
 
 </RelativeLayout>

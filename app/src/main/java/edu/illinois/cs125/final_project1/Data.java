@@ -55,7 +55,6 @@ public class Data {
             while ((line = in.readLine()) != null) {
                     a += line;
                 }
-            System.out.println(a);
                 return a;
             } catch(Exception e) {
                 e.printStackTrace();

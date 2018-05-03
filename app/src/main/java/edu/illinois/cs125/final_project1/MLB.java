@@ -5,11 +5,21 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Base64;
 
 public class MLB extends AppCompatActivity {
     String input1,input2;
@@ -17,6 +27,8 @@ public class MLB extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mlb);
+        Intent intent = getIntent();
+        ArrayList<String> x = intent.getStringArrayListExtra("players");
 
         Button mlbBack = (Button) findViewById(R.id.mlb_back_button);
         mlbBack.setOnClickListener(new View.OnClickListener() {
@@ -28,8 +40,15 @@ public class MLB extends AppCompatActivity {
 
 
 
-        final TextInputEditText firstPlayer = findViewById(R.id.mlb_first);
-        final TextInputEditText secondPlayer = findViewById(R.id.mlb_second);
+//        final TextInputEditText firstPlayer = findViewById(R.id.mlb_first);
+//        final TextInputEditText secondPlayer = findViewById(R.id.mlb_second);
+        final AutoCompleteTextView firstPlayer = findViewById(R.id.mlb_first);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,x);
+        firstPlayer.setAdapter(adapter);
+
+        final AutoCompleteTextView secondPlayer = findViewById(R.id.mlb_second);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,x);
+        secondPlayer.setAdapter(adapter1);
 
         Button mlbCompare = (Button) findViewById(R.id.compare_mlb);
         mlbCompare.setOnClickListener(new View.OnClickListener() {
@@ -181,6 +200,55 @@ public class MLB extends AppCompatActivity {
         } else {
             return player2;
         }
+    }
+    public static ArrayList<String> players(String jsonPlayers) {
+        if (jsonPlayers == null) {
+            return null;
+        }
+        ArrayList<String> allPlayers = new ArrayList<>();
+        JsonParser parser = new JsonParser();
+        JsonObject rootObj = parser.parse(jsonPlayers).getAsJsonObject();
+        JsonObject rosterplayers = rootObj.getAsJsonObject("rosterplayers");
+        JsonArray playerentry = rosterplayers.get("playerentry").getAsJsonArray();
+        for (int i = 0; i < playerentry.size(); i++) {
+            String first = playerentry.get(i).getAsJsonObject().get("player").getAsJsonObject().get("FirstName").getAsString();
+            String last =  playerentry.get(i).getAsJsonObject().get("player").getAsJsonObject().get("LastName").getAsString();
+            String fullName = first +" "+ last;
+            allPlayers.add(fullName);
+        }
+        return allPlayers;
+
+    }
+    public static String getPlayers() {
+        try {
+            URL url = new URL ("https://api.mysportsfeeds.com/v1.2/pull/mlb/2017-regular/roster_players.json?fordate=20170802");
+            String username = "1kishan:CS125Project";
+            byte[] user = username.getBytes();
+            String encoding = Base64.getEncoder().encodeToString(user);
+
+            byte[] encodedBytes = Base64.getEncoder().encode("Test".getBytes());
+            System.out.println("encodedBytes " + new String(encodedBytes));
+            byte[] decodedBytes = Base64.getDecoder().decode(encodedBytes);
+            System.out.println("decodedBytes " + new String(decodedBytes));
+
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            //connection.setDoOutput(true);
+            connection.setRequestProperty("Authorization", "Basic " + encoding);
+            InputStream content = (InputStream)connection.getInputStream();
+            BufferedReader in =
+                    new BufferedReader(new InputStreamReader(content));
+            String line;
+            String jsonPlayers = "";
+            while ((line = in.readLine()) != null) {
+                jsonPlayers += line;
+            }
+            return jsonPlayers;
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
