@@ -11,8 +11,8 @@
         android:layout_width="353dp"
         android:layout_height="88dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="91dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="75dp"
         android:gravity="center"
         android:text="The better player is: "
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
