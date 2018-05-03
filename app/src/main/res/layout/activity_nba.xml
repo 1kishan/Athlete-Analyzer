@@ -8,21 +8,20 @@
 
     <AutoCompleteTextView
         android:id="@+id/nba_second"
-        android:layout_width="168dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView3"
+        android:layout_width="161dp"
+        android:layout_height="46dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="-92dp"
+        android:layout_alignTop="@+id/nba_first"
+        android:layout_marginEnd="11dp"
         android:hint="pick second player" />
 
     <AutoCompleteTextView
         android:id="@+id/nba_first"
         android:layout_width="135dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView3"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="-92dp"
-        android:layout_marginStart="29dp"
+        android:layout_above="@+id/compare_nba"
+        android:layout_marginBottom="-168dp"
+        android:layout_toStartOf="@+id/compare_nba"
         android:hint="pick first player" />
 
     <Button
@@ -31,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="123dp"
+        android:layout_marginTop="180dp"
         android:text="Compare!" />
 
     <TextView
@@ -40,42 +39,24 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp"
-        android:text="Compare NBA Players" />
+        android:layout_marginTop="52dp"
+        android:text="Compare NBA Players"
+        android:textAppearance="@android:style/TextAppearance.Material.Display1" />
 
     <Button
         android:id="@+id/nba_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_toEndOf="@+id/nba_first"
         android:text="Return to Home" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="94dp"
-        android:layout_height="23dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="-16dp"
-        android:layout_marginTop="92dp"
-        android:layout_toStartOf="@+id/textView"
-        android:text="Player 1 Name" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="94dp"
-        android:layout_height="23dp"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_toEndOf="@+id/nba_back_button"
-        android:text="Player 2 Name" />
-
-    <TextView
-        android:id="@+id/nba_ppg_stats_p1"
-        android:layout_width="142dp"
-        android:layout_height="49dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="194dp" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="283dp"
+        android:layout_height="381dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/nba_app" />
 
 </RelativeLayout>
