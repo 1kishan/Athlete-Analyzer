@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Switch;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -16,6 +19,8 @@ import com.google.gson.JsonParser;
 public class NFL extends AppCompatActivity {
     String input1;
     String input2;
+    int season;
+    boolean playoff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,11 @@ public class NFL extends AppCompatActivity {
         final AutoCompleteTextView secondPlayer = findViewById(R.id.nfl_second);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,quarterBacks);
         secondPlayer.setAdapter(adapter1);
+        final RadioGroup nba = findViewById(R.id.nba_group);
+        final RadioButton n2016 = findViewById(R.id.NFL2016);
+        final RadioButton n2017 = findViewById(R.id.NFL2017);
+        final RadioButton n2018 = findViewById(R.id.NFL2018);
+        final Switch playoffs = findViewById(R.id.playoff);
 
         nflCompare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +49,18 @@ public class NFL extends AppCompatActivity {
                 input1 = input1.replace(' ','-');
                 input2 = secondPlayer.getText().toString();
                 input2 = input2.replace(' ','-');
+                if (n2016.isChecked()) {
+                    season = 2016;
+                } else if (n2017.isChecked()) {
+                    season = 2017;
+                } else if (n2018.isChecked()) {
+                    season = 2018;
+                } else {
+                    season = 2018;
+                }
+                if (playoffs.isChecked()) {
+                    playoff = true;
+                }
                 launchNFLcompare();
             }
         });
@@ -56,6 +78,8 @@ public class NFL extends AppCompatActivity {
         Intent intent = new Intent(this, NFLcompare.class);
         intent.putExtra("p1", input1);
         intent.putExtra("p2",input2);
+        intent.putExtra("year",season);
+        intent.putExtra("playoffs",playoff);
         startActivity(intent);
     }
 
@@ -149,8 +173,8 @@ public class NFL extends AppCompatActivity {
     public String betterPlayer(String player1, String player2) {
         int playerA = 0;
         int playerB = 0;
-        Data p1 = new Data(player1, "NFL");
-        Data p2 = new Data(player2, "NFL");
+        Data p1 = new Data(player1, "NFL",season,playoff);
+        Data p2 = new Data(player2, "NFL",season,playoff);
         if (getPassingTD(p1.apiGetData()) > getPassingTD(p2.apiGetData())) {
             playerA++;
         } else {

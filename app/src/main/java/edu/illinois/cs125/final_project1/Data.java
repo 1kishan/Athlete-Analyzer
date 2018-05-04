@@ -1,4 +1,6 @@
 package edu.illinois.cs125.final_project1;
+import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -9,27 +11,70 @@ import java.util.Base64;
 public class Data {
     String player = null;
     String league = null;
+    int season;
+    String date;
+    boolean playoffs;
 
-    public Data(String inputPlayer, String inputLeague) {
+    public Data(String inputPlayer, String inputLeague, final int inputSeason, final boolean inputPlayoffs) {
         player = inputPlayer;
         league = inputLeague;
+        season = inputSeason;
+        playoffs = inputPlayoffs;
     }
     public String urlBuilder() {
         String url;
-        if (league.equals("NBA")) {
-            url = "https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?player="+player;
+        if (league.equals("NBA") && !playoffs) {
+            if (season == 2016) {
+                date = "2015-2016";
+            } else if (season == 2017) {
+                date = "2016-2017";
+            } else {
+                date = "2017-2018";
+            }
+            url = "https://api.mysportsfeeds.com/v1.2/pull/nba/" + date + "-regular/cumulative_player_stats.json?player=" + player;
+            return url;
+        }
+        if (league.equals("NBA") && playoffs) {
+            if (season == 2016) {
+                date = "2016";
+            } else if (season == 2017) {
+                date = "2017";
+            } else {
+                date = "2018";
+            }
+            url = "https://api.mysportsfeeds.com/v1.2/pull/nba/" + date + "-playoff/cumulative_player_stats.json?player=" + player;
             return url;
         }
         if (league.equals("NFL")) {
-            url = "https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/cumulative_player_stats.json?player="+player;
+            if (season == 2016) {
+                date = "2016";
+            } else if (season == 2017) {
+                date = "2017";
+            } else {
+                date = "2018";
+            }
+            if (!playoffs) {
+                url = "https://api.mysportsfeeds.com/v1.2/pull/nfl/" + date + "-regular/cumulative_player_stats.json?player=" + player;
+            } else {
+                url = "https://api.mysportsfeeds.com/v1.2/pull/nfl/" + date + "-playoff/cumulative_player_stats.json?player=" + player;
+            }
             return url;
         }
+
         if (league.equals("MLB")) {
-            url = "https://api.mysportsfeeds.com/v1.2/pull/mlb/2017-regular/cumulative_player_stats.json?player="+player;
+            if (season == 2016) {
+                date = "2016";
+            } else if (season == 2017) {
+                date = "2017";
+            } else {
+                date = "2018";
+            }
+            url = "https://api.mysportsfeeds.com/v1.2/pull/mlb/" + date + "-regular/cumulative_player_stats.json?player=" + player;
             return url;
         }
         return null;
     }
+
 
     public String apiGetData(){
         try {
@@ -57,7 +102,8 @@ public class Data {
                 }
                 return a;
             } catch(Exception e) {
-                e.printStackTrace();
+            e.printStackTrace();
+
             }
             return null;
         }
