@@ -8,7 +8,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -26,8 +30,8 @@ public class NBA extends AppCompatActivity {
 
     String input1;
     String input2;
-
-    public TextView nbaPlayer1ppg;
+    int season;
+    boolean playoff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +48,6 @@ public class NBA extends AppCompatActivity {
             }
         });
 
-//
-//        final TextInputEditText firstPlayer = findViewById(R.id.nba_first);
-//        final TextInputEditText secondPlayer = findViewById(R.id.nba_second);
         final AutoCompleteTextView firstPlayer = findViewById(R.id.nba_first);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,x);
         firstPlayer.setAdapter(adapter);
@@ -55,17 +56,32 @@ public class NBA extends AppCompatActivity {
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,x);
         secondPlayer.setAdapter(adapter1);
 
-
+        final RadioGroup nba = findViewById(R.id.nba_group);
+        final RadioButton n2016 = findViewById(R.id.N2016);
+        final RadioButton n2017 = findViewById(R.id.N2017);
+        final RadioButton n2018 = findViewById(R.id.N2018);
+        final Switch playoffs = findViewById(R.id.playoff);
 
         Button nbaCompare = findViewById(R.id.compare_nba);
         nbaCompare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(players(getPlayers()).toString());
                 input1 = firstPlayer.getText().toString();
                 input1 = input1.replace(' ','-');
                 input2 = secondPlayer.getText().toString();
                 input2 = input2.replace(' ','-');
+                if (n2016.isChecked()) {
+                    season = 2016;
+                } else if (n2017.isChecked()) {
+                    season = 2017;
+                } else if (n2018.isChecked()) {
+                    season = 2018;
+                } else {
+                    season = 2018;
+                }
+                if (playoffs.isChecked()) {
+                    playoff = true;
+                }
                 launchNBAcompare();
 
             }
@@ -77,6 +93,8 @@ public class NBA extends AppCompatActivity {
         Intent intent = new Intent(this, NBAcompare.class);
         intent.putExtra("p1", input1);
         intent.putExtra("p2",input2);
+        intent.putExtra("year",season);
+        intent.putExtra("playoffs",playoff);
         startActivity(intent);
     }
 
@@ -93,9 +111,10 @@ public class NBA extends AppCompatActivity {
         JsonObject rootObj = parser.parse(json).getAsJsonObject();
         JsonObject cumulativeplayerstats = rootObj.getAsJsonObject("cumulativeplayerstats");
         JsonArray playerStatsArray = cumulativeplayerstats.get("playerstatsentry").getAsJsonArray();
-        double qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("PtsPerGame").
+        double pointsPerGame = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("PtsPerGame").
                 getAsJsonObject().get("#text").getAsDouble();
-        return qbRating;
+        return pointsPerGame;
+
     }
 
     /**
@@ -111,9 +130,9 @@ public class NBA extends AppCompatActivity {
         JsonObject rootObj = parser.parse(json).getAsJsonObject();
         JsonObject cumulativeplayerstats = rootObj.getAsJsonObject("cumulativeplayerstats");
         JsonArray playerStatsArray = cumulativeplayerstats.get("playerstatsentry").getAsJsonArray();
-        double qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("AstPerGame").
+        double assistsPerGame = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("AstPerGame").
                 getAsJsonObject().get("#text").getAsDouble();
-        return qbRating;
+        return assistsPerGame;
     }
 
     /**
@@ -129,9 +148,9 @@ public class NBA extends AppCompatActivity {
         JsonObject rootObj = parser.parse(json).getAsJsonObject();
         JsonObject cumulativeplayerstats = rootObj.getAsJsonObject("cumulativeplayerstats");
         JsonArray playerStatsArray = cumulativeplayerstats.get("playerstatsentry").getAsJsonArray();
-        double qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("RebPerGame").
+        double reboundsPerGame = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("RebPerGame").
                 getAsJsonObject().get("#text").getAsDouble();
-        return qbRating;
+        return reboundsPerGame;
     }
 
     /**
@@ -147,9 +166,9 @@ public class NBA extends AppCompatActivity {
         JsonObject rootObj = parser.parse(json).getAsJsonObject();
         JsonObject cumulativeplayerstats = rootObj.getAsJsonObject("cumulativeplayerstats");
         JsonArray playerStatsArray = cumulativeplayerstats.get("playerstatsentry").getAsJsonArray();
-        double qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("Fg3PtPct").
+        double fgPct = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("Fg3PtPct").
                 getAsJsonObject().get("#text").getAsDouble();
-        return qbRating;
+        return fgPct;
     }
 
     /**
@@ -165,15 +184,15 @@ public class NBA extends AppCompatActivity {
         JsonObject rootObj = parser.parse(json).getAsJsonObject();
         JsonObject cumulativeplayerstats = rootObj.getAsJsonObject("cumulativeplayerstats");
         JsonArray playerStatsArray = cumulativeplayerstats.get("playerstatsentry").getAsJsonArray();
-        double qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("TovPerGame").
+        double tov = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("TovPerGame").
                 getAsJsonObject().get("#text").getAsDouble();
-        return qbRating;
+        return tov;
     }
     public String betterPlayer(String player1, String player2) {
         int playerA = 0;
         int playerB = 0;
-        Data p1 = new Data(player1,"NBA");
-        Data p2 = new Data(player2,"NBA");
+        Data p1 = new Data(player1,"NBA",season, playoff);
+        Data p2 = new Data(player2,"NBA",season,playoff);
         if (getAPG(p1.apiGetData()) > getAPG(p2.apiGetData())) {
             playerA++;
         } else {
@@ -253,8 +272,6 @@ public class NBA extends AppCompatActivity {
             allPlayers.add(fullName);
         }
         return allPlayers;
-
     }
-
 
 }

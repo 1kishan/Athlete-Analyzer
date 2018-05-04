@@ -37,6 +37,8 @@ public class NBAcompare extends AppCompatActivity {
         Intent intent = getIntent();
         String input1 = intent.getStringExtra("p1");
         String input2 = intent.getStringExtra("p2");
+        int season = intent.getIntExtra("year",2018);
+        boolean playOff = intent.getBooleanExtra("playoffs",false);
         Button nbacompareback = (Button) findViewById(R.id.nba_compare_back);
         nbacompareback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,9 +46,8 @@ public class NBAcompare extends AppCompatActivity {
                 finish();
             }
         });
-
-        Data player1 = new Data(input1,"NBA");
-        Data player2 = new Data(input2, "NBA");
+        Data player1 = new Data(input1,"NBA",season,playOff);
+        Data player2 = new Data(input2, "NBA",season,playOff);
         String jsonPlayer1 = player1.apiGetData();
         String jsonPlayer2 = player2.apiGetData();
         String p1Name = input1;

@@ -58,6 +58,47 @@
         android:layout_height="396dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
         app:srcCompat="@drawable/mlb_new" />
+
+    <RadioGroup
+        android:id="@+id/mlb_group"
+        android:layout_width="186dp"
+        android:layout_height="80dp"
+        android:layout_above="@+id/mlb_back_button"
+        android:layout_alignStart="@+id/mlb_first">
+
+        <RadioButton
+            android:id="@+id/MLB2016"
+            android:layout_width="186dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2016 Season" />
+
+        <RadioButton
+            android:id="@+id/MLB2017"
+            android:layout_width="186dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2017 Season" />
+
+        <RadioButton
+            android:id="@+id/MLB2018"
+            android:layout_width="186dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2018 Season" />
+
+    </RadioGroup>
+
+    <Switch
+        android:id="@+id/playoff"
+        android:layout_width="114dp"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="67dp"
+        android:layout_marginEnd="55dp"
+        android:text="Playoffs" />
 
 </RelativeLayout>

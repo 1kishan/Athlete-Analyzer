@@ -39,8 +39,10 @@ public class NFLcompare extends AppCompatActivity {
         Intent intent = getIntent();
         String input1 = intent.getStringExtra("p1");
         String input2 = intent.getStringExtra("p2");
-        Data player1 = new Data(input1,"NFL");
-        Data player2 = new Data(input2, "NFL");
+        int season = intent.getIntExtra("year",2018);
+        boolean playOff = intent.getBooleanExtra("playoffs",false);
+        Data player1 = new Data(input1,"NFL",season,playOff);
+        Data player2 = new Data(input2, "NFL",season,playOff);
         String jsonPlayer1 = player1.apiGetData();
         String jsonPlayer2 = player2.apiGetData();
         String p1Name = input1;

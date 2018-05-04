@@ -59,4 +59,44 @@
         android:layout_centerHorizontal="true"
         app:srcCompat="@drawable/nba_app" />
 
+    <RadioGroup
+        android:id="@+id/nba_group"
+        android:layout_width="186dp"
+        android:layout_height="80dp"
+        android:layout_above="@+id/nba_back_button"
+        android:layout_toStartOf="@+id/nba_second">
+
+        <RadioButton
+            android:id="@+id/N2016"
+            android:layout_width="186dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2016 Season" />
+
+        <RadioButton
+            android:id="@+id/N2017"
+            android:layout_width="186dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2017 Season" />
+
+        <RadioButton
+            android:id="@+id/N2018"
+            android:layout_width="186dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2018 Season" />
+
+    </RadioGroup>
+
+    <Switch
+        android:id="@+id/playoff"
+        android:layout_width="107dp"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="67dp"
+        android:layout_marginEnd="55dp"
+        android:text="Playoffs" />
+
 </RelativeLayout>

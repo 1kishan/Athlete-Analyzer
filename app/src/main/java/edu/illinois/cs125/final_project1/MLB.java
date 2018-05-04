@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Switch;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -23,6 +26,8 @@ import java.util.Base64;
 
 public class MLB extends AppCompatActivity {
     String input1,input2;
+    int season;
+    boolean playoff;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +44,6 @@ public class MLB extends AppCompatActivity {
         });
 
 
-
-//        final TextInputEditText firstPlayer = findViewById(R.id.mlb_first);
-//        final TextInputEditText secondPlayer = findViewById(R.id.mlb_second);
         final AutoCompleteTextView firstPlayer = findViewById(R.id.mlb_first);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,x);
         firstPlayer.setAdapter(adapter);
@@ -50,6 +52,11 @@ public class MLB extends AppCompatActivity {
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,x);
         secondPlayer.setAdapter(adapter1);
 
+        final RadioGroup nba = findViewById(R.id.nba_group);
+        final RadioButton n2016 = findViewById(R.id.MLB2016);
+        final RadioButton n2017 = findViewById(R.id.MLB2017);
+        final RadioButton n2018 = findViewById(R.id.MLB2018);
+        final Switch playoffs = findViewById(R.id.playoff);
         Button mlbCompare = (Button) findViewById(R.id.compare_mlb);
         mlbCompare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,11 +65,19 @@ public class MLB extends AppCompatActivity {
                 input1 = input1.replace(' ','-');
                 input2 = secondPlayer.getText().toString();
                 input2 = input2.replace(' ','-');
-                Data player1 = new Data(input1,"MLB");
-                Data player2 = new Data(input2, "MLB");
-                System.out.println(player1.urlBuilder());
-                System.out.println(player2.urlBuilder());
-                launchMLBCompare();
+                if (n2016.isChecked()) {
+                    season = 2016;
+                } else if (n2017.isChecked()) {
+                    season = 2017;
+                } else if (n2018.isChecked()) {
+                    season = 2018;
+                } else {
+                    season = 2018;
+                }
+                if (playoffs.isChecked()) {
+                    playoff = true;
+                }
+                    launchMLBCompare();
             }
         });
 
@@ -73,6 +88,8 @@ public class MLB extends AppCompatActivity {
         Intent intent = new Intent(this, MLBcompare.class);
         intent.putExtra("p1", input1);
         intent.putExtra("p2",input2);
+        intent.putExtra("year",season);
+        intent.putExtra("playoffs",playoff);
         startActivity(intent);
     }
 
@@ -89,9 +106,9 @@ public class MLB extends AppCompatActivity {
         JsonObject rootObj = parser.parse(json).getAsJsonObject();
         JsonObject cumulativeplayerstats = rootObj.getAsJsonObject("cumulativeplayerstats");
         JsonArray playerStatsArray = cumulativeplayerstats.get("playerstatsentry").getAsJsonArray();
-        int qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("Homeruns").
+        int getHR = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("Homeruns").
                 getAsJsonObject().get("#text").getAsInt();
-        return qbRating;
+        return getHR;
     }
 
     /**
@@ -107,9 +124,9 @@ public class MLB extends AppCompatActivity {
         JsonObject rootObj = parser.parse(json).getAsJsonObject();
         JsonObject cumulativeplayerstats = rootObj.getAsJsonObject("cumulativeplayerstats");
         JsonArray playerStatsArray = cumulativeplayerstats.get("playerstatsentry").getAsJsonArray();
-        int qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("RunsBattedIn").
+        int getRbi = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("RunsBattedIn").
                 getAsJsonObject().get("#text").getAsInt();
-        return qbRating;
+        return getRbi;
     }
 
     /**
@@ -125,9 +142,9 @@ public class MLB extends AppCompatActivity {
         JsonObject rootObj = parser.parse(json).getAsJsonObject();
         JsonObject cumulativeplayerstats = rootObj.getAsJsonObject("cumulativeplayerstats");
         JsonArray playerStatsArray = cumulativeplayerstats.get("playerstatsentry").getAsJsonArray();
-        double qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("BattingAvg").
+        double getBatAvg = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("BattingAvg").
                 getAsJsonObject().get("#text").getAsDouble();
-        return qbRating;
+        return getBatAvg;
     }
 
     /**
@@ -143,9 +160,9 @@ public class MLB extends AppCompatActivity {
         JsonObject rootObj = parser.parse(json).getAsJsonObject();
         JsonObject cumulativeplayerstats = rootObj.getAsJsonObject("cumulativeplayerstats");
         JsonArray playerStatsArray = cumulativeplayerstats.get("playerstatsentry").getAsJsonArray();
-        int qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("Errors").
+        int getErrors = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("Errors").
                 getAsJsonObject().get("#text").getAsInt();
-        return qbRating;
+        return getErrors;
     }
 
     /**
@@ -161,15 +178,15 @@ public class MLB extends AppCompatActivity {
         JsonObject rootObj = parser.parse(json).getAsJsonObject();
         JsonObject cumulativeplayerstats = rootObj.getAsJsonObject("cumulativeplayerstats");
         JsonArray playerStatsArray = cumulativeplayerstats.get("playerstatsentry").getAsJsonArray();
-        int qbRating = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("BatterStrikeouts").
+        int strikeouts = playerStatsArray.get(0).getAsJsonObject().get("stats").getAsJsonObject().get("BatterStrikeouts").
                 getAsJsonObject().get("#text").getAsInt();
-        return qbRating;
+        return strikeouts;
     }
     public String betterPlayer(String player1, String player2) {
         int playerA = 0;
         int playerB = 0;
-        Data p1 = new Data(player1, "MLB");
-        Data p2 = new Data(player2, "MLB");
+        Data p1 = new Data(player1, "MLB",season,playoff);
+        Data p2 = new Data(player2, "MLB",season,playoff);
         if (getHR(p1.apiGetData()) > getHR(p2.apiGetData())) {
             playerA++;
         } else {
