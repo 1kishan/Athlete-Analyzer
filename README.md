@@ -1,4 +1,4 @@
-# Final_project1
+# Athlete Analyzer
 This is a Java based Android Application focused on utilizing Web-API's in order to enhance our overall product.
 <br>
 It is currently designed to pick the "better" player out of two from the NBA, NFL and MLB, based on a few hand picked stats.
